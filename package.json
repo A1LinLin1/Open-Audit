@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "php-parser": "^3.1.5"
+  }
+}

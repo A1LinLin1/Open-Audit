@@ -1,0 +1,168 @@
+language: py
+
+rules:
+  - id: 1
+    name: system()
+    description: 将字符串作为OS命令执行
+    type: regex
+    danger: 10
+    kind:
+      - 'system()'
+
+  - id: 2
+    name: exec()
+    description: 将字符串作为OS命令执行
+    type: regex
+    danger: 10
+    kind:
+      - 'exec()'
+
+  - id: 3
+    name: shell_exec()
+    description: 将函数中的参数当作OS命令执行
+    type: regex
+    danger: 10
+    kind:
+      - 'shell_exec()'
+
+  - id: 4
+    name: popen()
+    description: 执行OS命令,没回显
+    type: regex
+    danger: 10
+    kind:
+      - 'popen()'
+
+  - id: 5
+    name: passthru()
+    description: 将字符串当作系统命令执行
+    type: regex
+    danger: 10
+    kind:
+      - 'passthru()'
+
+  - id: 6
+    name: eval()
+    description: PHP语法规范字符串当作PHP代码执行
+    type: regex
+    danger: 10
+    kind:
+      - 'eval()'
+
+  - id: 7
+    name: assert()
+    description: PHP语法规范字符串当作PHP代码执行
+    type: regex
+    danger: 10
+    kind:
+      - 'assert()'
+
+  - id: 8
+    name: create_function()
+    description: PHP语法规范字符串当作PHP代码执行
+    type: regex
+    danger: 10
+    kind:
+      - 'create_function()'
+
+  - id: 9
+    name: preg_replace()
+    description: 对字符串进行正则后替换模式导致代码可以被执行
+    type: regex
+    danger: 10
+    kind:
+      - 'preg_replace()'
+
+  - id: 10
+    name: call_user_func()
+    description: 调用其他函数（回调）
+    type: regex
+    danger: 10
+    kind:
+      - 'call_user_func()'
+
+  - id: 11
+    name: array_map()
+    description: 数组每个元素应用回调函数
+    type: regex
+    danger: 10
+    kind:
+      - 'array_map()'
+
+  - id: 12
+    name: unserialize()
+    description: 反序列化漏洞
+    type: regex
+    danger: 10
+    kind:
+      - 'unserialize()'
+
+  - id: 13
+    name: include()
+    description: 包含的文件路径来自用户输入或未经验证的数据导致包含文件里含有攻击
+    type: regex
+    danger: 10
+    kind:
+      - 'include()'
+
+  - id: 14
+    name: include_once()
+    description: 包含的文件路径来自用户输入或未经验证的数据导致包含文件里含有攻击
+    type: regex
+    danger: 10
+    kind:
+      - 'include_once()'
+
+  - id: 15
+    name: require()
+    description: 包含的文件路径来自用户输入或未经验证的数据导致包含文件里含有攻击
+    type: regex
+    danger: 10
+    kind:
+      - 'require()'
+
+  - id: 16
+    name: require_once()
+    description: 包含的文件路径来自用户输入或未经验证的数据导致包含文件里含有攻击
+    type: regex
+    danger: 10
+    kind:
+      - 'require_once()'
+
+  - id: 17
+    name: allow_url_fopen=On && ( include() ||require() )
+    description: 远程文件包含
+    type: regex
+    danger: 10
+    kind:
+      - 'allow_url_fopen=On && ( include() ||require() )'
+
+  - id: 18
+    name: allow_url_include=On
+    description: 远程文件包含
+    type: regex
+    danger: 10
+    kind:
+      - 'allow_url_include=On'
+
+  - id: 19
+    name: is_numeric()
+    description: 仅用次判断而不转换可能插入16进制字符串进而导致SQL二次注入
+    type: regex
+    danger: 10
+    kind:
+      - 'is_numeric()'
+  - id: 20
+    name: sql
+    description: 仅用次判断而不转换可能插入16进制字符串进而导致SQL二次注入
+    type: regex
+    danger: 10
+    kind:
+      - 'select'
+  - id: 20
+    name: sql
+    description: 接受用户输入参数
+    type: regex
+    danger: 10
+    kind:
+      - '$_GET'

@@ -1,0 +1,92 @@
+﻿language: java
+
+rules:
+  - id: 1
+    name: 命令执行
+    description: 可能会出现执行系统命令
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - '(Runtime)\.(exec|getRuntime)\.(exec)'
+      - '(ProcessBuilder|ProcessImpl)\.(start)'
+      - '(UNIXProcess)\.(forkAndExec)'
+
+  - id: 2
+    name: 执行命令
+    description: 加载恶意字节码或链接库可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - '(Runtime)\.(getRuntime()|load).(load)'
+      - 'defineClass'
+      - 'getOutputProperties'
+
+  - id: 3
+    name: sql
+    description: sql注入可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - 'createQuery'
+      - 'executeQuery'
+      - 'createNativeQuery'
+      - 'doQuery'
+      - 'preparedStatement.execute'
+
+  - id: 4
+    name: ssrf
+    description: ssrf可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - '(URL|url)\.(openConnection)'
+      - '(ImageIO)\.(read)'
+
+  - id: 5
+    name: unserilize
+    description: json反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - '(JSON)\.(parseObject|parse)'
+
+  - id: 6
+    name: unserilize
+    description: jackson反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - '(ObjectMapper)\.(readValue)'
+
+  - id: 7
+    name: unserilize
+    description: java原生反序列化可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - 'readObject'
+
+  - id: 8
+    name: xxe
+    description: xxe解析漏洞可能会出现
+    type: ast
+    danger: 9
+    ptype: 后门
+    confidence: 0.1
+    kind:
+      - 'DocumentBuilderSec|SAXParser|TransformerFactory|Validator||SchemaFactory|SAXTransformerFactory|SAXSource|DocumentBuilder|XMLReader'
+      - 'XMLReaderFactory|SAXReader|SAXBuilder|Unmarshaller|XpathExpression|XMLStreamReader|Digester'
